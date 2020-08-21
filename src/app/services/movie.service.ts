@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap, map } from 'rxjs/operators'
 import Movie from '../models/Movie';
 
 const BASE_URL = 'https://api.themoviedb.org/3/movie';
@@ -14,10 +15,28 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  getPopularMovies(): Observable<Array<Movie>> {
-    return this.http.get<Array<Movie>>(`${BASE_URL}/popular${API_KEY}&page=1`)
+  getPopularMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${BASE_URL}/popular${API_KEY}&page=1`)
+      .pipe(
+        map(data=>data['results'].slice(0, 6))
+      )
   }
-  getInTheaterMovies(): Observable<Array<Movie>> {
-    return this.http.get<Array<Movie>>(`${BASE_URL}/now_playing${API_KEY}&page=1`)
+  getInTheaterMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${BASE_URL}/now_playing${API_KEY}&page=1`)
+    .pipe(
+      map(data=>data['results'].slice(0, 6))
+    )
+  }
+  getUpcomingMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${BASE_URL}/upcoming${API_KEY}&page=1`)
+    .pipe(
+      map(data=>data['results'].slice(0, 6))
+    )
+  }
+  getTopRatedMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${BASE_URL}/top_rated${API_KEY}&page=1`)
+    .pipe(
+      map(data=>data['results'].slice(0, 6))
+    )
   }
 }
