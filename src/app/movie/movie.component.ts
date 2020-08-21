@@ -17,12 +17,7 @@ export class MovieComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // console.log(this.movie)
     this.imagePath = 'https://image.tmdb.org/t/p/w500' + this.movie.poster_path;
-  }
-
-  clickButton(){
-    this.clickButtonEmitter.emit(this.movie.id);
   }
 
 }
