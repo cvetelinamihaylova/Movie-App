@@ -1,3 +1,4 @@
+import { SingleMovieResolver } from './services/resolvers/single-movie.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MoviesComponent } from './movies/movies.component';
@@ -11,11 +12,12 @@ const routes: Routes = [
   },
   {
     path: 'movies',
-     component: MoviesComponent
+    component: MoviesComponent
   },
   {
     path: 'movies/:id',
-    component: MovieDetailsComponent
+    component: MovieDetailsComponent,
+    resolve: [SingleMovieResolver]
   }
 ];
 

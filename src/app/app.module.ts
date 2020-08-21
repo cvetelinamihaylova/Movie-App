@@ -1,3 +1,4 @@
+import { SingleMovieResolver } from './services/resolvers/single-movie.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -26,7 +27,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [SingleMovieResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
